@@ -47,3 +47,63 @@
 오프라인 : 원래 스터디 시간 줌
 
 스프링 + 자바(코틀린 으로 바뀜)
+
+---
+
+## 패키지 구조
+
+### 1안 : 계층형
+
+```
+├── config
+├── controller
+│   ├── feed
+│   └── user
+├── domain
+│   ├── feed
+│   └── user
+├── event
+├── exception
+├── model
+│   ├── dto
+│   │   ├── feed
+│   │   └── user
+│   ├── request
+│   │   ├── feed
+│   │   └── user
+│   └── response
+│       ├── feed
+│       └── user
+├── repository
+├── service
+│   └── user
+└── util
+```
+
+### 2안 : 도메인형
+예시 : https://github.com/njhyuk/product-api
+```
+├── config
+│   └── exception
+├── core
+│   ├── feed
+│   │   ├── command
+│   │   ├── domain
+│   │   ├── exception
+│   │   └── query
+│   ├── user
+│   │   ├── command
+│   │   ├── domain
+│   │   ├── exception
+│   │   └── query
+└── inbound
+    └── web
+        ├── api
+        │   └── v1
+        │       ├── feed
+        │       └── user
+        └── public
+            └── v1
+                ├── admin
+                └── user
+```
