@@ -52,36 +52,6 @@
 
 ## 패키지 구조
 
-### 1안 : 계층형
-
-```
-├── config
-├── controller
-│   ├── feed
-│   └── user
-├── domain
-│   ├── feed
-│   └── user
-├── event
-├── exception
-├── model
-│   ├── dto
-│   │   ├── feed
-│   │   └── user
-│   ├── request
-│   │   ├── feed
-│   │   └── user
-│   └── response
-│       ├── feed
-│       └── user
-├── repository
-├── service
-│   └── user
-└── util
-```
-
-### 2안 : 도메인형
-예시 : https://github.com/njhyuk/product-api
 ```
 ├── config
 │   └── exception
