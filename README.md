@@ -47,3 +47,33 @@
 오프라인 : 원래 스터디 시간 줌
 
 스프링 + 자바(코틀린 으로 바뀜)
+
+---
+
+## 패키지 구조
+
+```
+├── config
+│   └── exception
+├── core
+│   ├── feed
+│   │   ├── command
+│   │   ├── domain
+│   │   ├── exception
+│   │   └── query
+│   ├── user
+│   │   ├── command
+│   │   ├── domain
+│   │   ├── exception
+│   │   └── query
+└── inbound
+    └── web
+        ├── api
+        │   └── v1
+        │       ├── feed
+        │       └── user
+        └── public
+            └── v1
+                ├── admin
+                └── user
+```
