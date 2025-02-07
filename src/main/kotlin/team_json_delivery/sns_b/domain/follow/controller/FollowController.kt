@@ -7,12 +7,14 @@ import team_json_delivery.sns_b.domain.follow.model.response.GetFollowersRespons
 import team_json_delivery.sns_b.domain.follow.model.response.GetFollowingsResponse
 import team_json_delivery.sns_b.domain.follow.service.FollowService
 import team_json_delivery.sns_b.domain.follow.service.ReadFollowService
+import team_json_delivery.sns_b.domain.follow.service.UnFollowService
 import team_json_delivery.sns_b.global.model.response.WebResponse
 
 @RestController
 @RequestMapping("/api/v1/users/{userId}")
 class FollowController(
     val followService: FollowService,
+    val unfollowService: UnFollowService,
     val readFollowService: ReadFollowService,
 ) {
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,7 +32,7 @@ class FollowController(
         @PathVariable userId: String,
         @PathVariable followeeId: String,
     ) {
-        followService.unFollow(follower = UserID(userId), followee = UserID(followeeId))
+        unfollowService.unFollow(follower = UserID(userId), followee = UserID(followeeId))
     }
 
     @GetMapping("/followers")
