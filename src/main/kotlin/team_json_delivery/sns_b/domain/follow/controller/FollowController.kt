@@ -10,42 +10,42 @@ import team_json_delivery.sns_b.domain.follow.service.ReadFollowService
 import team_json_delivery.sns_b.global.model.response.WebResponse
 
 @RestController
-@RequestMapping("/api/v1/users/{userID}")
+@RequestMapping("/api/v1/users/{userId}")
 class FollowController(
     val followService: FollowService,
     val readFollowService: ReadFollowService,
 ) {
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/follow/{followeeID}")
+    @PostMapping("/follow/{followeeId}")
     fun follow(
-        @PathVariable userID: Long,
-        @PathVariable followeeID: Long,
+        @PathVariable userId: String,
+        @PathVariable followeeId: String,
     ) {
-        followService.follow(follower = UserID(userID), followee = UserID(followeeID))
+        followService.follow(follower = UserID(userId), followee = UserID(followeeId))
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/follow/{followeeID}")
+    @DeleteMapping("/follow/{followeeId}")
     fun unFollow(
-        @PathVariable userID: Long,
-        @PathVariable followeeID: Long,
+        @PathVariable userId: String,
+        @PathVariable followeeId: String,
     ) {
-        followService.unFollow(follower = UserID(userID), followee = UserID(followeeID))
+        followService.unFollow(follower = UserID(userId), followee = UserID(followeeId))
     }
 
     @GetMapping("/followers")
     fun getFollowers(
-        @PathVariable userID: Long,
+        @PathVariable userId: String,
     ): WebResponse<GetFollowersResponse> {
-        val userWithFollowers = readFollowService.readFollwers(UserID(userID))
-        return WebResponse.success(GetFollowersResponse.from(userWithFollowers))
+        val userWithFollowers = readFollowService.getFollowers(UserID(userId))
+        return WebResponse.success(GetFollowersResponse.from(userId, userWithFollowers))
     }
 
     @GetMapping("/followings")
     fun getFollowings(
-        @PathVariable userID: Long,
+        @PathVariable userId: String,
     ): WebResponse<GetFollowingsResponse> {
-        val userWithFollowings = readFollowService.readFollowings(UserID(userID))
-        return WebResponse.success(GetFollowingsResponse.from(userWithFollowings))
+        val followings = readFollowService.getFollowings(UserID(userId))
+        return WebResponse.success(GetFollowingsResponse.from(userId, followings))
     }
 }
