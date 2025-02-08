@@ -3,12 +3,11 @@ package team_json_delivery.sns_b.domain.follow.controller
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team_json_delivery.sns_b.domain.follow.domain.vo.UserID
+import team_json_delivery.sns_b.domain.follow.model.response.GetFolloweesResponse
 import team_json_delivery.sns_b.domain.follow.model.response.GetFollowersResponse
-import team_json_delivery.sns_b.domain.follow.model.response.GetFollowingsResponse
 import team_json_delivery.sns_b.domain.follow.service.FollowService
 import team_json_delivery.sns_b.domain.follow.service.ReadFollowService
 import team_json_delivery.sns_b.domain.follow.service.UnFollowService
-import team_json_delivery.sns_b.global.model.response.WebResponse
 
 @RestController
 @RequestMapping("/api/v1/users/{userId}")
@@ -38,16 +37,16 @@ class FollowController(
     @GetMapping("/followers")
     fun getFollowers(
         @PathVariable userId: String,
-    ): WebResponse<GetFollowersResponse> {
+    ): GetFollowersResponse {
         val userWithFollowers = readFollowService.findFollowersFor(UserID(userId))
-        return WebResponse.success(GetFollowersResponse.from(userId, userWithFollowers))
+        return GetFollowersResponse.from(userId, userWithFollowers)
     }
 
-    @GetMapping("/followings")
-    fun getFollowings(
+    @GetMapping("/followees")
+    fun getFollowees(
         @PathVariable userId: String,
-    ): WebResponse<GetFollowingsResponse> {
-        val followings = readFollowService.findFolloweesFor(UserID(userId))
-        return WebResponse.success(GetFollowingsResponse.from(userId, followings))
+    ): GetFolloweesResponse {
+        val followees = readFollowService.findFolloweesFor(UserID(userId))
+        return GetFolloweesResponse.from(userId, followees)
     }
 }

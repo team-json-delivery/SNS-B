@@ -4,20 +4,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 import team_json_delivery.sns_b.domain.follow.domain.Follow
 
 @Schema(description = "팔로잉 정보 조회 응답")
-data class GetFollowingsResponse(
+data class GetFolloweesResponse(
     @Schema(description = "사용자 ID")
     val userId: String,
     @Schema(description = "팔로잉 사용자 ID")
-    val followingIds: Set<String>,
+    val followeeIds: Set<String>,
 ) {
     companion object {
         fun from(
             userId: String,
             list: List<Follow>,
-        ): GetFollowingsResponse =
-            GetFollowingsResponse(
+        ): GetFolloweesResponse =
+            GetFolloweesResponse(
                 userId = userId,
-                followingIds = list.map { it.followee.value }.toSet(),
+                followeeIds = list.map { it.followee.value }.toSet(),
             )
     }
 }
