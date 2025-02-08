@@ -5,6 +5,7 @@ enum class ErrorCode(
     val message: String,
 ) {
     NOT_FOUND_POST("NOT_FOUND_POST", "게시글이 존재하지 않습니다."),
-    DUPLICATED_DATA("DUPLICATED_DATA", "이미 존재하는 데이터입니다."),
+    NOT_FOUND_FOLLOW("NOT_FOUND_FOLLOW", "팔로우가 존재하지 않습니다."),
+    DUPLICATED_FOLLOW("DUPLICATED_FOLLOW", "이미 팔로우 되어 있습니다."),
     SELF_FOLLOW_NOT_ALLOWED("SELF_FOLLOW_NOT_ALLOWED", "자기 자신을 팔로우할 수 없습니다."),
 }

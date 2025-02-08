@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
 import team_json_delivery.sns_b.domain.follow.domain.vo.UserID
-import team_json_delivery.sns_b.domain.follow.exception.DuplicatedDataException
+import team_json_delivery.sns_b.domain.follow.exception.DuplicatedFollowException
 import team_json_delivery.sns_b.domain.follow.exception.SelfFollowNotAllowedException
 import team_json_delivery.sns_b.domain.follow.repository.FollowRepository
 
@@ -36,7 +36,7 @@ class FollowServiceTest(
             sut.follow(follower = follower, followee = followee)
             `when`("호출") {
                 then("DuplicatedDataException 발생") {
-                    shouldThrowExactly<DuplicatedDataException> {
+                    shouldThrowExactly<DuplicatedFollowException> {
                         sut.follow(follower = follower, followee = followee)
                     }
                 }
