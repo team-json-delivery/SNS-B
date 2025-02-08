@@ -9,7 +9,7 @@ import team_json_delivery.sns_b.global.model.response.WebResponse
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundPostException::class)
     fun badRequest(e: BusinessException): WebResponse<Any> {
         return WebResponse.error(e.errorCode)

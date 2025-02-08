@@ -7,6 +7,8 @@ import team_json_delivery.sns_b.domain.post.model.dto.PostDto
 data class GetPostResponse(
     @Schema(description = "생성된 게시글 ID", example = "1")
     val id: Long,
+    @Schema(description = "좋아요 수", example = "10")
+    val likeCount: Long,
     @Schema(description = "게시글 내용", example = "안녕하세요")
     val content: String,
 ) {
@@ -14,6 +16,7 @@ data class GetPostResponse(
         fun from(dto: PostDto): GetPostResponse {
             return GetPostResponse(
                 id = dto.id,
+                likeCount = dto.likeCount,
                 content = dto.content,
             )
         }

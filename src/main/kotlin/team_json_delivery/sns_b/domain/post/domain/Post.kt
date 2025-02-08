@@ -13,5 +13,6 @@ class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    val content: String,
-): BaseEntity()
+    var likeCount: Long = 0,
+    var content: String,
+) : BaseEntity()

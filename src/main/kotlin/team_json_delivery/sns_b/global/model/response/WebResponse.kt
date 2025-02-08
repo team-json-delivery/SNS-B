@@ -15,7 +15,7 @@ data class WebResponse<T>(
     val data: T?
 ) {
     companion object {
-        fun <T> success(result: T): WebResponse<T> {
+        fun <T> success(result: T?): WebResponse<T> {
             return WebResponse(
                 success = true,
                 data = result
