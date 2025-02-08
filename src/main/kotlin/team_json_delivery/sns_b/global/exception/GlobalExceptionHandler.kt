@@ -47,6 +47,7 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
         detailMessageArguments: Array<out Any>?,
         request: WebRequest,
     ): ProblemDetail {
+        ex.printStackTrace()
         val problemDetail =
             super.createProblemDetail(
                 ex,
