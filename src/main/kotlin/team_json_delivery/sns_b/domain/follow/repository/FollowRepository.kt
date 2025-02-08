@@ -8,4 +8,8 @@ interface FollowRepository : JpaRepository<Follow, Long> {
         follower: String,
         followee: String,
     ): Follow?
+
+    fun findAllByFollower(follower: String): List<Follow>
+
+    fun findAllByFollowee(followee: String): List<Follow>
 }

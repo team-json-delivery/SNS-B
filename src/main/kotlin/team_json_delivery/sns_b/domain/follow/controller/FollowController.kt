@@ -39,7 +39,7 @@ class FollowController(
     fun getFollowers(
         @PathVariable userId: String,
     ): WebResponse<GetFollowersResponse> {
-        val userWithFollowers = readFollowService.getFollowers(UserID(userId))
+        val userWithFollowers = readFollowService.findFollowersFor(UserID(userId))
         return WebResponse.success(GetFollowersResponse.from(userId, userWithFollowers))
     }
 
@@ -47,7 +47,7 @@ class FollowController(
     fun getFollowings(
         @PathVariable userId: String,
     ): WebResponse<GetFollowingsResponse> {
-        val followings = readFollowService.getFollowings(UserID(userId))
+        val followings = readFollowService.findFolloweesFor(UserID(userId))
         return WebResponse.success(GetFollowingsResponse.from(userId, followings))
     }
 }
