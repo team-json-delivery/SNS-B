@@ -10,4 +10,9 @@ interface FeedRepository : JpaRepository<Feed, Long> {
         follower: String,
         pageRequest: PageRequest,
     ): Page<Feed>
+
+    fun deleteAllByFollowerAndFollowee(
+        follower: String,
+        followee: String,
+    )
 }
