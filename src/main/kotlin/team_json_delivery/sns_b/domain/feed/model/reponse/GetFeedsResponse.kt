@@ -26,7 +26,7 @@ data class GetFeedsResponse(
         ): GetFeedsResponse =
             GetFeedsResponse(
                 userId = userId,
-                postId = feeds.content.map { it.postId.value }.toSet(),
+                postId = feeds.content.map { it.post.value }.toSet(),
                 totalPage = feeds.totalPages,
                 totalElements = feeds.totalElements,
                 number = feeds.number,

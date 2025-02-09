@@ -1,6 +1,5 @@
 package team_json_delivery.sns_b.domain.feed.domain
 
-import org.junit.jupiter.api.Assertions.*
 import team_json_delivery.sns_b.domain.feed.domain.vo.PostID
 import team_json_delivery.sns_b.domain.feed.domain.vo.UserID
 import java.util.UUID
@@ -17,7 +16,7 @@ class FeedTest {
                 id = id,
                 follower = follower,
                 followee = followee,
-                postId = postId,
+                post = postId,
             )
     }
 }
