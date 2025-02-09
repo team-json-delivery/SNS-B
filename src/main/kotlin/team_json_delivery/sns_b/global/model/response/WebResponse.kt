@@ -12,13 +12,19 @@ data class WebResponse<T>(
     @Schema(description = "에러 메시지")
     val message: String? = null,
     @Schema(description = "응답 데이터")
-    val data: T?
+    val data: T? = null
 ) {
     companion object {
         fun <T> success(result: T): WebResponse<T> {
             return WebResponse(
                 success = true,
                 data = result
+            )
+        }
+
+        fun <T> success(): WebResponse<T> {
+            return WebResponse(
+                success = true,
             )
         }
 
