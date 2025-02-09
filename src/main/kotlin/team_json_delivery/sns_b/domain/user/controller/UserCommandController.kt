@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import team_json_delivery.sns_b.domain.user.model.command.CreateUserCommand
+import team_json_delivery.sns_b.domain.user.model.command.ModifyUserCommand
 import team_json_delivery.sns_b.domain.user.model.request.CreateUserRequest
 import team_json_delivery.sns_b.domain.user.model.response.CreateUserResponse
 import team_json_delivery.sns_b.domain.user.model.response.GetUserResponse
@@ -43,13 +44,13 @@ class UserCommandController(
         @Schema(description = "유저 번호", example = "123")
         @PathVariable userId: Long,
         request: CreateUserRequest
-    ): WebResponse<CreateUserResponse> {
+    ): WebResponse<ModifyUserCommand> {
         val updatedUserId = userCommandService.update(
-            CreateUserCommand(userId, request.userName)
+            ModifyUserCommand(userId, request.userName)
         )
 
         return WebResponse.success(
-            CreateUserResponse(updatedUserId, request.userName)
+            ModifyUserCommand(updatedUserId, request.userName)
         )
     }
 

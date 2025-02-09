@@ -3,6 +3,7 @@ package team_json_delivery.sns_b.domain.user.service
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import team_json_delivery.sns_b.domain.user.model.command.CreateUserCommand
+import team_json_delivery.sns_b.domain.user.model.command.ModifyUserCommand
 import team_json_delivery.sns_b.domain.user.repository.UserRepository
 
 @Service
@@ -17,11 +18,11 @@ class UserCommandService(
         return user.id
     }
 
-    fun update(createUserCommand: CreateUserCommand): Long {
-        val user = userRepository.findByIdOrNull(createUserCommand.id)
-            ?: throw IllegalArgumentException("User with id ${createUserCommand.id} does not exist")
+    fun update(modifyUserCommand: ModifyUserCommand): Long {
+        val user = userRepository.findByIdOrNull(modifyUserCommand.id)
+            ?: throw IllegalArgumentException("User with id ${modifyUserCommand.id} does not exist")
 
-        user.userName = createUserCommand.userName
+        user.userName = modifyUserCommand.userName
         userRepository.save(user)
 
         return user.id
