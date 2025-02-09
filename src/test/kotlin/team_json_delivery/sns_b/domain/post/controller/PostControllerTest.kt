@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import team_json_delivery.sns_b.domain.post.model.dto.PostDto
 import team_json_delivery.sns_b.domain.post.service.GetPostService
 
-@WebMvcTest(GetPostController::class)
+@WebMvcTest(PostController::class)
 class PostControllerTest(
     private val mockMvc: MockMvc,
     @MockitoBean

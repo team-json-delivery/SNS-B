@@ -9,4 +9,5 @@ enum class ErrorCode(
 ) {
     NOT_FOUND_POST(HttpStatus.NOT_FOUND, "NOT_FOUND_POST", "게시글이 존재하지 않습니다."),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", "서버 에러 발생하였습니다."),
+    NOT_FOUND_USER(HttpStatus.NOT_FOUND,"NOT_FOUND_USER", "사용자가 존재하지 않습니다."),
 }
