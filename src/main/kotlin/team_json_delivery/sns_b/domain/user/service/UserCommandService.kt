@@ -12,7 +12,7 @@ class UserCommandService(
     private val userRepository: UserRepository
 ) {
     fun create(createUserCommand: CreateUserCommand): Long {
-        userRepository.findByIdOrNull(createUserCommand.id)
+        userRepository.findByUserName(createUserCommand.userName)
             ?: throw NotFoundUserException()
 
         val user = userRepository.save(createUserCommand.toEntity())
