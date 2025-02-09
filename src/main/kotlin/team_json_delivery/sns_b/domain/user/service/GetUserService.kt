@@ -6,10 +6,10 @@ import team_json_delivery.sns_b.domain.user.domain.User
 import team_json_delivery.sns_b.domain.user.repository.UserRepository
 
 @Service
-class GetUserService (
+class GetUserService(
     private val userRepository: UserRepository
-){
-    fun getUser(userId: String): User {
+) {
+    fun getUser(userId: Long): User {
         return userRepository.findById(userId)
             .orElseThrow { NotFoundUserException() }
     }

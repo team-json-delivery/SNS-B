@@ -25,11 +25,11 @@ class UserController(
     @PostMapping
     fun createUser(request: CreateUserRequest): WebResponse<CreateUserResponse> {
         val userId = createUserService.create(
-            CreateUserCommand(request.id, request.name)
+            CreateUserCommand(request.id, request.userName)
         )
 
         return WebResponse.success(
-            CreateUserResponse(userId, request.name)
+            CreateUserResponse(userId, request.userName)
         )
     }
 
@@ -37,7 +37,7 @@ class UserController(
     @GetMapping("/{userId}")
     fun getUser(
         @Schema(description = "유저 번호", example = "123")
-        @PathVariable userId: String
+        @PathVariable userId: Long
     ): WebResponse<GetUserResponse> {
         val user = getUserService.getUser(userId)
 

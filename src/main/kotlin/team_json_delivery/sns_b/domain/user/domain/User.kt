@@ -8,8 +8,8 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "user")
-class User (
+class User(
     @Id
-    val id: String,
-    val name: String,
+    val id: Long,
+    val userName: String,
 )
