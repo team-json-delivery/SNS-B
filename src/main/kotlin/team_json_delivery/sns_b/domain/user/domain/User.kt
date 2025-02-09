@@ -11,5 +11,5 @@ import jakarta.persistence.Table
 class User(
     @Id
     val id: Long,
-    val userName: String,
+    var userName: String,
 )

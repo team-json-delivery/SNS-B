@@ -6,7 +6,7 @@ import team_json_delivery.sns_b.domain.user.domain.User
 import team_json_delivery.sns_b.domain.user.repository.UserRepository
 
 @Service
-class GetUserService(
+class UserQueryService(
     private val userRepository: UserRepository
 ) {
     fun getUser(userId: Long): User {

@@ -6,7 +6,7 @@ import team_json_delivery.sns_b.domain.user.model.command.CreateUserCommand
 import team_json_delivery.sns_b.domain.user.repository.UserRepository
 
 @Service
-class CreateUserService(
+class UserCommandService(
     private val userRepository: UserRepository
 ) {
     fun create(createUserCommand: CreateUserCommand): Long {
@@ -15,6 +15,20 @@ class CreateUserService(
 
         val user = userRepository.save(createUserCommand.toEntity())
         return user.id
+    }
+
+    fun update(createUserCommand: CreateUserCommand): Long {
+        val user = userRepository.findByIdOrNull(createUserCommand.id)
+            ?: throw IllegalArgumentException("User with id ${createUserCommand.id} does not exist")
+
+        user.userName = createUserCommand.userName
+        userRepository.save(user)
+
+        return user.id
+    }
+
+    fun delete(userId: Long) {
+        userRepository.deleteById(userId)
     }
 
 }
