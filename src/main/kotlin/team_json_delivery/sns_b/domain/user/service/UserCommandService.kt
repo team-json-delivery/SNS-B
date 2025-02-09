@@ -22,10 +22,7 @@ class UserCommandService(
     fun update(modifyUserCommand: ModifyUserCommand): Long {
         val user = userRepository.findByIdOrNull(modifyUserCommand.id)
             ?: throw NotFoundUserException()
-
-        user.userName = modifyUserCommand.userName
-        userRepository.save(user)
-
+        userRepository.save(user.copy(modifyUserCommand.userName))
         return user.id
     }
 

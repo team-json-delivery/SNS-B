@@ -11,5 +11,12 @@ import jakarta.persistence.Table
 class User(
     @Id
     val id: Long,
-    var userName: String,
-)
+    val userName: String,
+){
+    fun copy(userName: String): User {
+        return User(
+            id = this.id,
+            userName = userName
+        )
+    }
+}
