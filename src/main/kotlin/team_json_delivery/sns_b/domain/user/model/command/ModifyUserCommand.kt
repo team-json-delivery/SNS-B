@@ -6,9 +6,4 @@ import team_json_delivery.sns_b.domain.user.domain.User
 data class ModifyUserCommand(
     val id: Long,
     val userName: String
-) {
-    fun toEntity() = User(
-        id = id,
-        userName = userName
-    )
-}
+)
