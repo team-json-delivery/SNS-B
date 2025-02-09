@@ -6,7 +6,6 @@ import io.kotest.core.spec.style.DescribeSpec
 import org.mockito.kotlin.any
 import org.mockito.kotlin.given
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
@@ -20,10 +19,8 @@ import team_json_delivery.sns_b.domain.post.service.CreatePostService
 import team_json_delivery.sns_b.domain.post.service.DeletePostService
 import team_json_delivery.sns_b.domain.post.service.GetPostService
 import team_json_delivery.sns_b.domain.post.service.ModifyPostService
-import team_json_delivery.sns_b.global.exception.GlobalExceptionHandler
 
 @WebMvcTest(PostController::class)
-@Import(GlobalExceptionHandler::class)
 class PostControllerTest(
     private val mockMvc: MockMvc,
     @MockitoBean
