@@ -30,9 +30,9 @@ class UserCommandService(
     }
 
     fun delete(userId: Long) {
-        userRepository.findByIdOrNull(userId) ?: throw NotFoundUserException()
+        val user = userRepository.findByIdOrNull(userId) ?: throw NotFoundUserException()
 
-        userRepository.deleteById(userId)
+        userRepository.delete(user)
     }
 
 }
