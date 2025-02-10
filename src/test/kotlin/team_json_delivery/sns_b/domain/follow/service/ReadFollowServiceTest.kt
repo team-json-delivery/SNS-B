@@ -3,22 +3,23 @@ package team_json_delivery.sns_b.domain.follow.service
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions.*
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.context.annotation.Import
+import team_json_delivery.sns_b.domain.follow.domain.Follow
 import team_json_delivery.sns_b.domain.follow.domain.vo.UserID
+import team_json_delivery.sns_b.domain.follow.repository.FollowRepository
 
-@Import(ReadFollowService::class, FollowService::class)
+@Import(ReadFollowService::class)
 @DataJpaTest
 class ReadFollowServiceTest(
     val sut: ReadFollowService,
-    val followService: FollowService,
+    val repository: FollowRepository,
 ) : BehaviorSpec({
         given("findFollowersFor 데이터 조회") {
             val followers = listOf(UserID("abs@ncsoft.com"), UserID("cccc@ncsoft.com"), UserID("aaa@ncsoft.com"))
             val followee = UserID("yoonhc@ncsoft.com")
             followers.forEach {
-                followService.follow(follower = it, followee = followee)
+                repository.save(Follow(follower = it, followee = followee))
             }
             `when`("호출") {
                 val list = sut.findFollowersFor(user = followee)
@@ -35,7 +36,7 @@ class ReadFollowServiceTest(
             val followees = listOf(UserID("abs@ncsoft.com"), UserID("cccc@ncsoft.com"), UserID("aaa@ncsoft.com"))
             val follower = UserID("yoonhc@ncsoft.com")
             followees.forEach {
-                followService.follow(follower = follower, followee = it)
+                repository.save(Follow(follower = follower, followee = it))
             }
             `when`("호출") {
                 val list = sut.findFolloweesFor(user = follower)
