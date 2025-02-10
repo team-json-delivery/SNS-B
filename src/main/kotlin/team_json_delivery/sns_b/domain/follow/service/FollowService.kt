@@ -7,12 +7,14 @@ import team_json_delivery.sns_b.domain.follow.domain.Follow
 import team_json_delivery.sns_b.domain.follow.domain.vo.UserID
 import team_json_delivery.sns_b.domain.follow.exception.DuplicatedFollowException
 import team_json_delivery.sns_b.domain.follow.exception.SelfFollowNotAllowedException
+import team_json_delivery.sns_b.domain.follow.module.event.EventPublisherModule
 import team_json_delivery.sns_b.domain.follow.repository.FollowRepository
 import kotlin.jvm.Throws
 
 @Service
 @Transactional
 class FollowService(
+    val eventPublisherModule: EventPublisherModule,
     val repository: FollowRepository,
 ) {
     @Throws(DuplicatedFollowException::class, SelfFollowNotAllowedException::class)
@@ -24,10 +26,12 @@ class FollowService(
             throw SelfFollowNotAllowedException()
         }
 
-        try {
-            repository.save(Follow(follower = follower, followee = followee))
-        } catch (ex: DataIntegrityViolationException) {
-            throw DuplicatedFollowException()
-        }
+        val follow =
+            try {
+                repository.save(Follow(follower = follower, followee = followee))
+            } catch (ex: DataIntegrityViolationException) {
+                throw DuplicatedFollowException()
+            }
+        eventPublisherModule.followEventsPublish(follow = follow)
     }
 }
